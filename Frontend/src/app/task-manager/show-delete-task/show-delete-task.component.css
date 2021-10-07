@@ -1,0 +1,11 @@
+.float-container {
+    display: flex;
+    border: 3px;
+    padding: 20px;
+}
+
+.float-child {
+    float: left;
+    padding: 20px;
+    border: 2px;
+}  
