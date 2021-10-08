@@ -6,13 +6,12 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-add-update-task',
   templateUrl: './add-update-task.component.html',
-  styleUrls: ['./add-update-task.component.css']
+  styleUrls: ['./add-update-task.component.css'],
 })
 export class AddUpdateTaskComponent implements OnInit {
+  constructor(private service: SharedService, private route: ActivatedRoute) {}
 
-  constructor(private service: SharedService, private route: ActivatedRoute) { }
-
-  @Input() ShowTask: any; 
+  @Input() ShowTask: any;
   TaskID?: number;
   Subject?: string;
   Priority?: string;
@@ -24,7 +23,6 @@ export class AddUpdateTaskComponent implements OnInit {
   EstimatedTime?: string;
   DonePercent?: string;
   Description?: string;
-
 
   ngOnInit(): void {
     this.loadTask();
@@ -44,9 +42,33 @@ export class AddUpdateTaskComponent implements OnInit {
     this.Description = this.ShowTask.Description;
   }
 
-  addTask(): void {
-    var 
-    // this.service.addTask().subscribe();
+  createTask(): any {
+    var task = {
+      TaskID: this.TaskID,
+      Subject: this.Subject,
+      Priority: this.Priority,
+      Status: this.Status,
+      StartDate: this.StartDate,
+      DueDate: this.DueDate,
+      TaskType: this.TaskType,
+      AssignedTo: this.AssignedTo,
+      EstimatedTime: this.EstimatedTime,
+      DonePercent: this.DonePercent,
+      Description: this.Description,
+    };
   }
 
+  addTask(): void {
+    var task = this.createTask();
+    this.service.addTask(task).subscribe( _ => {
+      alert("New Task Added!");
+    });
+  }
+
+  updateTask(): void {
+    var task = this.createTask();
+    this.service.updateTask(task).subscribe( _ => {
+      alert("Task Updated!");
+    });
+  }
 }

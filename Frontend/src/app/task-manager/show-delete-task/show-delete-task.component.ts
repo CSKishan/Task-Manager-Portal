@@ -12,9 +12,9 @@ export class ShowDeleteTaskComponent implements OnInit {
 
   constructor(private service: SharedService) { }
 
-  ToDoTaskList: Task[] = [];
-  InProgressTaskList: Task[] = [];
-  CompletedTaskList: Task[] = [];
+  ToDoTaskList: any[] = [];
+  InProgressTaskList: any[] = [];
+  CompletedTaskList: any[] = [];
   ShowTask: any;
   ActivateAddEdit?: boolean = false;
   ModalTitle?: string;

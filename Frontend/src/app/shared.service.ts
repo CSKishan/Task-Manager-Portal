@@ -12,7 +12,7 @@ export class SharedService {
 
   constructor(private http: HttpClient) { }
 
-  addTask(task: Task): Observable<any> {
+  addTask(task: any): Observable<any> {
     return this.http.post(this.TaskUrl, task);
   }
 
@@ -24,7 +24,7 @@ export class SharedService {
     return this.http.get(this.TaskUrl);
   }
 
-  updateTask(task: Task): Observable<any> {
+  updateTask(task: any): Observable<any> {
     return this.http.put(this.TaskUrl + `/${task.TaskID}`, task);
   }
 

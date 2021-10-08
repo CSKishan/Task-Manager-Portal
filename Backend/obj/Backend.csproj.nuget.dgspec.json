@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Angular-Projects\\Task-Manager-Portal\\Backend\\Backend.csproj": {}
+    "D:\\Angular-Projects\\Task-Manager-Portal\\Backend\\Backend.csproj": {}
   },
   "projects": {
-    "d:\\Angular-Projects\\Task-Manager-Portal\\Backend\\Backend.csproj": {
+    "D:\\Angular-Projects\\Task-Manager-Portal\\Backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Angular-Projects\\Task-Manager-Portal\\Backend\\Backend.csproj",
+        "projectUniqueName": "D:\\Angular-Projects\\Task-Manager-Portal\\Backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "d:\\Angular-Projects\\Task-Manager-Portal\\Backend\\Backend.csproj",
+        "projectPath": "D:\\Angular-Projects\\Task-Manager-Portal\\Backend\\Backend.csproj",
         "packagesPath": "C:\\Users\\kishan\\.nuget\\packages\\",
-        "outputPath": "d:\\Angular-Projects\\Task-Manager-Portal\\Backend\\obj\\",
+        "outputPath": "D:\\Angular-Projects\\Task-Manager-Portal\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kishan\\AppData\\Roaming\\NuGet\\NuGet.Config"

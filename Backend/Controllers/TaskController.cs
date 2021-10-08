@@ -9,6 +9,7 @@ using Backend.Models;
 
 namespace Backend.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class TaskController : ControllerBase
@@ -100,18 +101,21 @@ namespace Backend.Controllers
         }
 
         [Route("todotasklist")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<TaskModel>>> GetToDoTasks()
         {
             return await _context.Tasks.Where(p => p.Status == "To-Do").ToListAsync();
         }
 
         [Route("inprogresstasklist")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<TaskModel>>> GetInProgressTasks()
         {
             return await _context.Tasks.Where(p => p.Status == "In Progress").ToListAsync();
         }
 
         [Route("completedtasklist")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<TaskModel>>> GetCompletedTasks()
         {
             return await _context.Tasks.Where(p => p.Status == "Completed").ToListAsync();
