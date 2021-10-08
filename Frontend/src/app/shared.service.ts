@@ -16,6 +16,10 @@ export class SharedService {
     return this.http.post(this.TaskUrl, task);
   }
 
+  getTask(id: number): Observable<any> {
+    return this.http.get(this.TaskUrl + `/${id}`);
+  }
+
   getTaskList(): Observable<any> {
     return this.http.get(this.TaskUrl);
   }
@@ -26,6 +30,18 @@ export class SharedService {
 
   deleteTask(taskID: any): Observable<any> {
     return this.http.delete(this.TaskUrl + `/${taskID}`, taskID);
+  }
+
+  getToDoTaskList(): Observable<any> {
+    return this.http.get(this.TaskUrl + `/todotasklist`);
+  }
+
+  getInProgressTaskList(): Observable<any> {
+    return this.http.get(this.TaskUrl + `/inprogresstasklist`);
+  }
+
+  getCompletedTaskList(): Observable<any> {
+    return this.http.get(this.TaskUrl + `/completedtasklist`);
   }
 
 }

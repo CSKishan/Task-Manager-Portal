@@ -12,44 +12,78 @@ export class ShowDeleteTaskComponent implements OnInit {
 
   constructor(private service: SharedService) { }
 
-  TaskList: Task[] = [];
-  ShowTask?: Task;
-  ActivateAddEdit?: boolean;
+  ToDoTaskList: Task[] = [];
+  InProgressTaskList: Task[] = [];
+  CompletedTaskList: Task[] = [];
+  ShowTask: any;
+  ActivateAddEdit?: boolean = false;
   ModalTitle?: string;
 
   ngOnInit(): void {
+    this.refreshAllTaskList();
   }
 
   addTask() {
+    this.ShowTask = {
+      TaskID: 0,
+      Subject: "",
+      Priority: "",
+      Status: "",
+      StartDate: Date().toString(),
+      DueDate: "",
+      TaskType: "",
+      AssignedTo: "",
+      EstimatedTime: "",
+      DonePercent: "",
+      Description: ""
+    }
+    this.ModalTitle = "Add New Task";
+    this.ActivateAddEdit = true;
 
   }
 
   closeTask() {
-
+    this.ActivateAddEdit = false;
+    this.refreshAllTaskList();
   }
 
-  deleteTask(task: Task) {
-
+  deleteTask(task: any) {
+    if(confirm("Are you sure?")) {
+      this.service.deleteTask(task.TaskID).subscribe(_ => {
+        alert("Deleted Successfully!");
+        this.refreshAllTaskList();
+      });
+    }
   }
 
-  editTask(task: Task) {
-
+  editTask(task: any) {
+    this.ShowTask = task;
+    this.ModalTitle = "Edit Task";
+    this.ActivateAddEdit = true;
   }
 
   refreshAllTaskList() {
-
+    this.refreshToDoTaskList();
+    this.refreshInProgressTaskList();
+    this.refreshCompletedTaskList();
   }
 
   refreshToDoTaskList() {
-
+    this.service.getToDoTaskList().subscribe( list => {
+      this.ToDoTaskList = list;
+    });
   }
 
   refreshInProgressTaskList() {
-
+    this.service.getInProgressTaskList().subscribe( list => {
+      this.InProgressTaskList = list;
+    });
   }
 
   refreshCompletedTaskList() {
-
+    this.service.getCompletedTaskList().subscribe( list => {
+      this.CompletedTaskList = list;
+    });
   }
 
 

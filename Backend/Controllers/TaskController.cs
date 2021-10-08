@@ -99,6 +99,24 @@ namespace Backend.Controllers
             return NoContent();
         }
 
+        [Route("todotasklist")]
+        public async Task<ActionResult<IEnumerable<TaskModel>>> GetToDoTasks()
+        {
+            return await _context.Tasks.Where(p => p.Status == "To-Do").ToListAsync();
+        }
+
+        [Route("inprogresstasklist")]
+        public async Task<ActionResult<IEnumerable<TaskModel>>> GetInProgressTasks()
+        {
+            return await _context.Tasks.Where(p => p.Status == "In Progress").ToListAsync();
+        }
+
+        [Route("completedtasklist")]
+        public async Task<ActionResult<IEnumerable<TaskModel>>> GetCompletedTasks()
+        {
+            return await _context.Tasks.Where(p => p.Status == "Completed").ToListAsync();
+        }
+
         private bool TaskModelExists(int id)
         {
             return _context.Tasks.Any(e => e.TaskID == id);
