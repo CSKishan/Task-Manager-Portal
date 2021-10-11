@@ -7,6 +7,6 @@
 >npm install @angular/cli
 
 
-**Installing node_modules stored in package.json file
+**Installing node_modules stored in package.json file**
 
 >npm install
