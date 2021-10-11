@@ -84,6 +84,7 @@ export class AddUpdateTaskComponent implements OnInit {
       this.service.addTask(task).subscribe( _ => {
         let msg = document.getElementById('printMsg') as HTMLLabelElement;
         msg.textContent = "Task added successfully!";
+        
       });
   }
 
@@ -105,17 +106,13 @@ export class AddUpdateTaskComponent implements OnInit {
     return true;
   }
 
-  // DateCheck(): boolean {
-  //   let start = document.getElementById('startdate') as HTMLInputElement;
-  //   let end = document.getElementById('duedate') as HTMLInputElement;
-  //   if(Date.parse(start.value) > Date.parse(end.value)) {
-  //     alert('true');
-  //     return true;
-  //   }
-  //   else {
-  //     alert('false');
-  //     return false;
-  //   }
-  // }
+  SetMinDate(): void {
+    let startdate = document.getElementById('startdate') as HTMLInputElement;
+    let duedate = document.getElementById('duedate') as HTMLInputElement;
+    if(duedate.value < startdate.value) {
+      duedate.value = startdate.value;
+    }
+    duedate.min = startdate.value; 
+  }
 
 }

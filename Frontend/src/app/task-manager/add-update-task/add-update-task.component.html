@@ -30,12 +30,14 @@
           [(ngModel)]="Subject"
           placeholder="Enter Subject"
           name="subject"
+          minlength="3"
           #subject="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && subject.invalid }"
           required
         />
         <div *ngIf="f.submitted && subject.invalid" class="invalid-feedback">
           <div *ngIf="subject.errors?.required">Subject is required</div>
+          <div *ngIf="subject.errors?.minlength">Subject must be atleast 3 characters</div>
         </div>
       </div>
       <br /><br />
@@ -102,11 +104,13 @@
     <label class="col-sm-4 col-form-label make-bold">Start Date</label>
     <div class="col-sm-10">
       <input
+        (ngModelChange)="SetMinDate()"
         type="date"
         class="form-control"
         [(ngModel)]="StartDate"
         name="startdate"
         #sdate="ngModel"
+        id="startdate"
         [ngClass]="{ 'is-invalid': f.submitted && sdate.invalid }"
         required
       />
@@ -119,11 +123,13 @@
     <label class="col-sm-4 col-form-label make-bold">Due Date</label>
     <div class="col-sm-10">
       <input
+          (ngModelChange)="SetMinDate()"
           type="date"
           class="form-control"
           [(ngModel)]="DueDate"
           name="duedate"
           #duedate="ngModel"
+          id="duedate"
           [ngClass]="{ 'is-invalid': f.submitted && duedate.invalid }"
           required
           />
@@ -227,4 +233,4 @@
   ></label>
 </div>
 
-<script></script>
+

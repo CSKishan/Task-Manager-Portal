@@ -39,7 +39,7 @@ namespace Backend.Models
         [Column(TypeName = "varchar(10)"), Required]
         public string DonePercent { get; set; }
 
-        [Column(TypeName = "varchar(255)"), MaxLength(255, ErrorMessage = "Description limit exceeded"), Required]
+        [Column(TypeName = "varchar(255)"), MaxLength(255, ErrorMessage = "Description limit exceeded")]
         public string Description { get; set; }
     }
 }
