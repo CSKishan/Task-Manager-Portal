@@ -16,12 +16,15 @@ export class ShowDeleteTaskComponent implements OnInit {
   InProgressTaskList: any[] = [];
   CompletedTaskList: any[] = [];
   ShowTask: any;
+  InfoTask: any;
   ActivateAddEdit?: boolean = false;
   ModalTitle?: string;
+  
 
   ngOnInit(): void {
     this.refreshAllTaskList();
   }
+
 
   addTask() {
     this.ShowTask = {
@@ -60,6 +63,10 @@ export class ShowDeleteTaskComponent implements OnInit {
     this.ShowTask = task;
     this.ModalTitle = "Edit Task";
     this.ActivateAddEdit = true;
+  }
+
+  infoTask(task: any) {
+    this.InfoTask = task;
   }
 
   refreshAllTaskList() {

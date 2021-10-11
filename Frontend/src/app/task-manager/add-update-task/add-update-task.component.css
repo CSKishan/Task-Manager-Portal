@@ -1,0 +1,11 @@
+.flex-parent {
+    display: flex;
+  }
+  
+  .jc-center {
+    justify-content: center;
+  }
+
+  .make-bold {
+      font-weight: bold;
+  }

@@ -24,6 +24,7 @@ export class AddUpdateTaskComponent implements OnInit {
   DonePercent?: string;
   Description?: string;
 
+
   ngOnInit(): void {
     this.loadTask();
   }
@@ -42,6 +43,15 @@ export class AddUpdateTaskComponent implements OnInit {
     this.Description = this.ShowTask.Description;
   }
 
+  runTask() {
+    if(this.ShowTask.TaskID === 0) {
+      this.addTask();
+    }
+    else {
+      this.updateTask();
+    }
+  }
+
   createTask(): any {
     var task = {
       TaskID: this.TaskID,
@@ -57,8 +67,9 @@ export class AddUpdateTaskComponent implements OnInit {
       Description: this.Description,
     };
 
-    if(task.Status === "Completed") {
+    if(task.Status === "Completed" || task.DonePercent == "100 %") {
       task.DonePercent = "100 %";
+      task.Status = "Completed";
     }
     
     else if(task.DonePercent !== "0 %") {
@@ -69,16 +80,42 @@ export class AddUpdateTaskComponent implements OnInit {
   }
 
   addTask(): void {
-    var task = this.createTask();
-    this.service.addTask(task).subscribe( _ => {
-      alert("New Task Added!");
-    });
+      var task = this.createTask();
+      this.service.addTask(task).subscribe( _ => {
+        let msg = document.getElementById('printMsg') as HTMLLabelElement;
+        msg.textContent = "Task added successfully!";
+      });
   }
 
   updateTask(): void {
-    var task = this.createTask();
-    this.service.updateTask(task).subscribe( _ => {
-      alert("Task Updated!");
-    });
+      var task = this.createTask();
+      this.service.updateTask(task).subscribe( _ => {
+        let msg = document.getElementById('printMsg') as HTMLLabelElement;
+        msg.textContent = "Task updated successfully!";
+      });
   }
+
+  formValidation(): boolean {
+    if(this.ShowTask.TaskID === 0) {
+      this.addTask();
+    }
+    else {
+      this.updateTask();
+    }
+    return true;
+  }
+
+  // DateCheck(): boolean {
+  //   let start = document.getElementById('startdate') as HTMLInputElement;
+  //   let end = document.getElementById('duedate') as HTMLInputElement;
+  //   if(Date.parse(start.value) > Date.parse(end.value)) {
+  //     alert('true');
+  //     return true;
+  //   }
+  //   else {
+  //     alert('false');
+  //     return false;
+  //   }
+  // }
+
 }
