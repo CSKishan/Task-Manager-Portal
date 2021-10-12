@@ -43,7 +43,7 @@
                 <td></td>
               </tr>
                 <tr *ngFor="let item of ToDoTaskList">
-                  <td class="subject"><b>{{item.Subject}}</b></td>  
+                  <td><b>{{item.Subject}}</b></td>  
                     <td>
                       <button type="button" class="btn btn-light mr-1" id="priorityButton" tooltip="{{item.Priority}}" placement="top">
                         <div *ngIf="item.Priority === 'Urgent'">
@@ -124,7 +124,7 @@
                 <td></td>
               </tr>
                 <tr *ngFor="let item of InProgressTaskList" >
-                    <td><b>{{item.Subject}}<br>{{item.DonePercent}}</b></td>  
+                    <td><b>{{item.Subject}}<br></b><span style="color: grey;">{{item.DonePercent}}</span></td>  
                     <td>
                       <button type="button" class="btn btn-light mr-1" id="priorityButton" tooltip="{{item.Priority}}" placement="top">
                         <div *ngIf="item.Priority === 'Urgent'">

@@ -34,6 +34,10 @@ export class AddUpdateTaskComponent implements OnInit {
     else if(task.DonePercent !== "0 %") {
       task.Status = "In Progress";
     }
+
+    else if(task.DonePercent === "0 %") {
+      task.Status = "To-Do";
+    }
     
     return task;
   }
