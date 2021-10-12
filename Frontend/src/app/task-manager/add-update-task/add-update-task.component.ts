@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
-import { Task } from 'src/app/Task';
-import { ActivatedRoute } from '@angular/router';
+import { ShowDeleteTaskComponent } from '../show-delete-task/show-delete-task.component';
 
 @Component({
   selector: 'app-add-update-task',
@@ -9,9 +8,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./add-update-task.component.css'],
 })
 export class AddUpdateTaskComponent implements OnInit {
-  constructor(private service: SharedService, private route: ActivatedRoute) {}
+  constructor(private service: SharedService,
+    private sdtc: ShowDeleteTaskComponent) {}
 
   @Input() ShowTask: any;
+  newTask: any;
   TaskID?: number;
   Subject?: string;
   Priority?: string;
@@ -27,45 +28,16 @@ export class AddUpdateTaskComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadTask();
+    console.log(this.ShowTask);
+    console.log(this.newTask);
   }
 
   loadTask(): void {
-    this.TaskID = this.ShowTask.TaskID;
-    this.Subject = this.ShowTask.Subject;
-    this.Priority = this.ShowTask.Priority;
-    this.Status = this.ShowTask.Status;
-    this.StartDate = this.ShowTask.StartDate;
-    this.DueDate = this.ShowTask.DueDate;
-    this.TaskType = this.ShowTask.TaskType;
-    this.AssignedTo = this.ShowTask.AssignedTo;
-    this.EstimatedTime = this.ShowTask.EstimatedTime;
-    this.DonePercent = this.ShowTask.DonePercent;
-    this.Description = this.ShowTask.Description;
-  }
-
-  runTask() {
-    if(this.ShowTask.TaskID === 0) {
-      this.addTask();
-    }
-    else {
-      this.updateTask();
-    }
+    this.newTask = this.ShowTask;
   }
 
   createTask(): any {
-    var task = {
-      TaskID: this.TaskID,
-      Subject: this.Subject,
-      Priority: this.Priority,
-      Status: this.Status,
-      StartDate: this.StartDate,
-      DueDate: this.DueDate,
-      TaskType: this.TaskType,
-      AssignedTo: this.AssignedTo,
-      EstimatedTime: this.EstimatedTime,
-      DonePercent: this.DonePercent,
-      Description: this.Description,
-    };
+    var task = this.newTask;
 
     if(task.Status === "Completed" || task.DonePercent == "100 %") {
       task.DonePercent = "100 %";
@@ -84,7 +56,7 @@ export class AddUpdateTaskComponent implements OnInit {
       this.service.addTask(task).subscribe( _ => {
         let msg = document.getElementById('printMsg') as HTMLLabelElement;
         msg.textContent = "Task added successfully!";
-        
+        this.sdtc.closeTask();
       });
   }
 
@@ -93,6 +65,7 @@ export class AddUpdateTaskComponent implements OnInit {
       this.service.updateTask(task).subscribe( _ => {
         let msg = document.getElementById('printMsg') as HTMLLabelElement;
         msg.textContent = "Task updated successfully!";
+        this.sdtc.closeTask();
       });
   }
 
@@ -103,6 +76,7 @@ export class AddUpdateTaskComponent implements OnInit {
     else {
       this.updateTask();
     }
+    
     return true;
   }
 

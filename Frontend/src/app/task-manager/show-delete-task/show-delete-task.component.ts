@@ -31,29 +31,32 @@ export class ShowDeleteTaskComponent implements OnInit {
       TaskID: 0,
       Subject: "",
       Priority: "",
-      Status: "",
-      StartDate: Date().toString(),
+      Status: "To-Do",
+      StartDate: "",
       DueDate: "",
       TaskType: "",
       AssignedTo: "",
       EstimatedTime: "",
-      DonePercent: "",
-      Description: ""
+      DonePercent: "0 %",
+      Description: "",
     }
     this.ModalTitle = "Add New Task";
     this.ActivateAddEdit = true;
-
+    console.log("Add task");
   }
 
   closeTask() {
     this.ActivateAddEdit = false;
     this.refreshAllTaskList();
+    console.log("Close task");
   }
 
   deleteTask(task: any) {
     if(confirm("Are you sure?")) {
+      let taskid = task.TaskID;
       this.service.deleteTask(task.TaskID).subscribe(_ => {
-        alert("Deleted Successfully!");
+        let msg = document.getElementById('printMsg') as HTMLLabelElement;
+        msg.textContent = `Task with TaskID: ${taskid} deleted successfully!`;
         this.refreshAllTaskList();
       });
     }
@@ -63,10 +66,7 @@ export class ShowDeleteTaskComponent implements OnInit {
     this.ShowTask = task;
     this.ModalTitle = "Edit Task";
     this.ActivateAddEdit = true;
-  }
-
-  infoTask(task: any) {
-    this.InfoTask = task;
+    console.log("Edit task");
   }
 
   refreshAllTaskList() {

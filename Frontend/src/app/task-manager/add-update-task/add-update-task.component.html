@@ -5,7 +5,7 @@
       <div class="col-sm-10">
         <select
           class="form-control"
-          [(ngModel)]="TaskType"
+          [(ngModel)]="newTask.TaskType"
           name="tasktype"
           #tasktype="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && tasktype.invalid }"
@@ -27,7 +27,7 @@
         <input
           type="text"
           class="form-control"
-          [(ngModel)]="Subject"
+          [(ngModel)]="newTask.Subject"
           placeholder="Enter Subject"
           name="subject"
           minlength="3"
@@ -37,7 +37,9 @@
         />
         <div *ngIf="f.submitted && subject.invalid" class="invalid-feedback">
           <div *ngIf="subject.errors?.required">Subject is required</div>
-          <div *ngIf="subject.errors?.minlength">Subject must be atleast 3 characters</div>
+          <div *ngIf="subject.errors?.minlength">
+            Subject must be atleast 3 characters
+          </div>
         </div>
       </div>
       <br /><br />
@@ -46,7 +48,7 @@
       <div class="col-sm-10">
         <textarea
           class="form-control"
-          [(ngModel)]="Description"
+          [(ngModel)]="newTask.Description"
           placeholder="Enter Description"
           cols="40"
           name="description"
@@ -55,30 +57,31 @@
       <br /><br />
 
       <label class="col-sm-4 col-form-label make-bold">Status</label>
-      <div class="col-sm-10">
-        <select
-          class="form-control"
-          [(ngModel)]="Status"
-          name="status"
-          #status="ngModel"
-          [ngClass]="{ 'is-invalid': f.submitted && status.invalid }"
-          required
-        >
-          <option selected>To-Do</option>
-          <option>In Progress</option>
-          <option>Completed</option>
-        </select>
-        <div *ngIf="f.submitted && status.invalid" class="invalid-feedback">
-          <div *ngIf="status.errors?.required">Status is required</div>
+        <div class="col-sm-10">
+          <select
+            class="form-control"
+            [(ngModel)]="newTask.Status"
+            name="status"
+            #status="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && status.invalid }"
+            required
+          >
+            <option selected>To-Do</option>
+            <option>In Progress</option>
+            <option>Completed</option>
+          </select>
+          <div *ngIf="f.submitted && status.invalid" class="invalid-feedback">
+            <div *ngIf="status.errors?.required">Status is required</div>
+          </div>
         </div>
-      </div>
+      
       <br /><br />
 
       <label class="col-sm-4 col-form-label make-bold">Priority</label>
       <div class="col-sm-10">
         <select
           class="form-control"
-          [(ngModel)]="Priority"
+          [(ngModel)]="newTask.Priority"
           name="priority"
           #priority="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && priority.invalid }"
@@ -100,45 +103,43 @@
       class="form-group row float-end"
       style="width: 50%; padding-left: 30px"
     >
-
-    <label class="col-sm-4 col-form-label make-bold">Start Date</label>
-    <div class="col-sm-10">
-      <input
-        (ngModelChange)="SetMinDate()"
-        type="date"
-        class="form-control"
-        [(ngModel)]="StartDate"
-        name="startdate"
-        #sdate="ngModel"
-        id="startdate"
-        [ngClass]="{ 'is-invalid': f.submitted && sdate.invalid }"
-        required
-      />
-      <div *ngIf="f.submitted && sdate.invalid" class="invalid-feedback">
-        <div *ngIf="sdate.errors?.required">Start Date is required</div>
-      </div>
-    </div>
-    <br /><br />
-    
-    <label class="col-sm-4 col-form-label make-bold">Due Date</label>
-    <div class="col-sm-10">
-      <input
+      <label class="col-sm-4 col-form-label make-bold">Start Date</label>
+      <div class="col-sm-10">
+        <input
           (ngModelChange)="SetMinDate()"
           type="date"
           class="form-control"
-          [(ngModel)]="DueDate"
+          [(ngModel)]="newTask.StartDate"
+          name="startdate"
+          #sdate="ngModel"
+          id="startdate"
+          [ngClass]="{ 'is-invalid': f.submitted && sdate.invalid }"
+          required
+        />
+        <div *ngIf="f.submitted && sdate.invalid" class="invalid-feedback">
+          <div *ngIf="sdate.errors?.required">Start Date is required</div>
+        </div>
+      </div>
+      <br /><br />
+
+      <label class="col-sm-4 col-form-label make-bold">Due Date</label>
+      <div class="col-sm-10">
+        <input
+          (ngModelChange)="SetMinDate()"
+          type="date"
+          class="form-control"
+          [(ngModel)]="newTask.DueDate"
           name="duedate"
           #duedate="ngModel"
           id="duedate"
           [ngClass]="{ 'is-invalid': f.submitted && duedate.invalid }"
           required
-          />
-          <div *ngIf="f.submitted && duedate.invalid" class="invalid-feedback">
-            <div *ngIf="duedate.errors?.required">Due Date is required</div>
-          </div>
+        />
+        <div *ngIf="f.submitted && duedate.invalid" class="invalid-feedback">
+          <div *ngIf="duedate.errors?.required">Due Date is required</div>
         </div>
-        <br /><br />
-        
+      </div>
+      <br /><br />
 
       <label class="col-sm-4 col-form-label make-bold">Assigned To</label>
 
@@ -146,7 +147,7 @@
         <input
           type="text"
           class="form-control"
-          [(ngModel)]="AssignedTo"
+          [(ngModel)]="newTask.AssignedTo"
           placeholder="Assigned To"
           name="assignedto"
           #assignedto="ngModel"
@@ -166,7 +167,7 @@
         <input
           type="text"
           class="form-control"
-          [(ngModel)]="EstimatedTime"
+          [(ngModel)]="newTask.EstimatedTime"
           placeholder="Enter Estimated Time"
           name="estimatedtime"
           #estimated="ngModel"
@@ -185,13 +186,13 @@
       <div class="col-sm-10">
         <select
           class="form-control"
-          [(ngModel)]="DonePercent"
+          [(ngModel)]="newTask.DonePercent"
           name="donepercent"
           #donepercent="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && donepercent.invalid }"
           required
         >
-          <option selected>0 %</option>
+          <option>0 %</option>
           <option>10 %</option>
           <option>20 %</option>
           <option>30 %</option>
@@ -212,12 +213,14 @@
           </div>
         </div>
       </div>
+
       <br /><br />
     </div>
   </div>
 
   <div class="flex-parent jc-center">
     <input
+      data-bs-dismiss="modal"
       type="submit"
       class="btn btn-primary"
       style="text-align: center"
@@ -225,12 +228,4 @@
     />
   </div>
 </form>
-
-<div class="flex-parent jc-center">
-  <label
-    id="printMsg"
-    style="padding-top: 10px; color: grey; text-align: center"
-  ></label>
-</div>
-
 
