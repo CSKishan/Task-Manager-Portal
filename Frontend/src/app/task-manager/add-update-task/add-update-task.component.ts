@@ -9,7 +9,9 @@ import { ShowDeleteTaskComponent } from '../show-delete-task/show-delete-task.co
 })
 export class AddUpdateTaskComponent implements OnInit {
   constructor(private service: SharedService,
-    private sdtc: ShowDeleteTaskComponent) {}
+    private sdtc: ShowDeleteTaskComponent) {
+    }
+
 
   @Input() ShowTask: any;
   newTask: any;
@@ -25,11 +27,8 @@ export class AddUpdateTaskComponent implements OnInit {
   DonePercent?: string;
   Description?: string;
 
-
   ngOnInit(): void {
     this.loadTask();
-    console.log(this.ShowTask);
-    console.log(this.newTask);
   }
 
   loadTask(): void {
@@ -56,6 +55,7 @@ export class AddUpdateTaskComponent implements OnInit {
       this.service.addTask(task).subscribe( _ => {
         let msg = document.getElementById('printMsg') as HTMLLabelElement;
         msg.textContent = "Task added successfully!";
+        document.getElementById('closebtn')?.click();
         this.sdtc.closeTask();
       });
   }
@@ -65,6 +65,7 @@ export class AddUpdateTaskComponent implements OnInit {
       this.service.updateTask(task).subscribe( _ => {
         let msg = document.getElementById('printMsg') as HTMLLabelElement;
         msg.textContent = "Task updated successfully!";
+        document.getElementById('closebtn')?.click();
         this.sdtc.closeTask();
       });
   }
@@ -76,7 +77,6 @@ export class AddUpdateTaskComponent implements OnInit {
     else {
       this.updateTask();
     }
-    
     return true;
   }
 
