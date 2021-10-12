@@ -104,21 +104,27 @@ namespace Backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TaskModel>>> GetToDoTasks()
         {
-            return await _context.Tasks.Where(p => p.Status == "To-Do").ToListAsync();
+            return await _context.Tasks.Where(p => p.Status == "To-Do")
+            .OrderBy(o => o.Priority == "Urgent"? 1 : (o.Priority == "High"? 2 : (o.Priority == "Normal"? 3: 4)))
+            .ToListAsync();
         }
 
         [Route("inprogresstasklist")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TaskModel>>> GetInProgressTasks()
         {
-            return await _context.Tasks.Where(p => p.Status == "In Progress").ToListAsync();
+            return await _context.Tasks.Where(p => p.Status == "In Progress")
+            .OrderBy(o => o.Priority == "Urgent"? 1 : (o.Priority == "High"? 2 : (o.Priority == "Normal"? 3: 4)))
+            .ToListAsync();
         }
 
         [Route("completedtasklist")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TaskModel>>> GetCompletedTasks()
         {
-            return await _context.Tasks.Where(p => p.Status == "Completed").ToListAsync();
+            return await _context.Tasks.Where(p => p.Status == "Completed")
+            .OrderBy(o => o.Priority == "Urgent"? 1 : (o.Priority == "High"? 2 : (o.Priority == "Normal"? 3: 4)))
+            .ToListAsync();
         }
 
         private bool TaskModelExists(int id)

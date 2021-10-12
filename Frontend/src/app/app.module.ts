@@ -9,6 +9,7 @@ import { ShowDeleteTaskComponent } from './task-manager/show-delete-task/show-de
 import { SharedService } from './shared.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TooltipDirective, TooltipModule } from 'ng2-tooltip-directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    TooltipModule
   ],
   providers: [SharedService],
   bootstrap: [AppComponent]

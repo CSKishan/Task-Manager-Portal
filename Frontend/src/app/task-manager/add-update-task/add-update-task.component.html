@@ -31,15 +31,15 @@
           placeholder="Enter Subject"
           name="subject"
           minlength="3"
+          maxlength="50"
           #subject="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && subject.invalid }"
           required
         />
         <div *ngIf="f.submitted && subject.invalid" class="invalid-feedback">
           <div *ngIf="subject.errors?.required">Subject is required</div>
-          <div *ngIf="subject.errors?.minlength">
-            Subject must be atleast 3 characters
-          </div>
+          <div *ngIf="subject.errors?.minlength">Subject must be atleast 3 characters</div>
+          <div *ngIf="subject.errors?.maxlength">Subject must not exceed 50 characters</div>
         </div>
       </div>
       <br /><br />
@@ -50,9 +50,14 @@
           class="form-control"
           [(ngModel)]="newTask.Description"
           placeholder="Enter Description"
+          maxlength="255"
           cols="40"
+          #description = "ngModel"
           name="description"
         ></textarea>
+        <div *ngIf="f.submitted && description.invalid" class="invalid-feedback">
+          <div *ngIf="description.errors?.maxlength">Subject must not exceed 255 characters</div>
+        </div>
       </div>
       <br /><br />
 
@@ -148,7 +153,7 @@
           type="text"
           class="form-control"
           [(ngModel)]="newTask.AssignedTo"
-          placeholder="Assigned To"
+          placeholder="Enter Person's Name"
           name="assignedto"
           #assignedto="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && assignedto.invalid }"

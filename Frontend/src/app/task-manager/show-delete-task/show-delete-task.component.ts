@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { SharedService } from 'src/app/shared.service';
-import { Task } from 'src/app/Task';
+import { Tooltip } from 'bootstrap'; 
 
 @Component({
   selector: 'app-show-delete-task',
@@ -16,7 +15,6 @@ export class ShowDeleteTaskComponent implements OnInit {
   InProgressTaskList: any[] = [];
   CompletedTaskList: any[] = [];
   ShowTask: any;
-  InfoTask: any;
   ActivateAddEdit?: boolean = false;
   ModalTitle?: string;
   

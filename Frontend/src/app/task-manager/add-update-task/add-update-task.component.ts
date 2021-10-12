@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
-import { ShowDeleteTaskComponent } from '../show-delete-task/show-delete-task.component';
 
 @Component({
   selector: 'app-add-update-task',
@@ -8,24 +7,11 @@ import { ShowDeleteTaskComponent } from '../show-delete-task/show-delete-task.co
   styleUrls: ['./add-update-task.component.css'],
 })
 export class AddUpdateTaskComponent implements OnInit {
-  constructor(private service: SharedService,
-    private sdtc: ShowDeleteTaskComponent) {
-    }
+  constructor(private service: SharedService) {}
 
 
   @Input() ShowTask: any;
   newTask: any;
-  TaskID?: number;
-  Subject?: string;
-  Priority?: string;
-  Status?: string;
-  StartDate?: string;
-  DueDate?: string;
-  TaskType?: string;
-  AssignedTo?: string;
-  EstimatedTime?: string;
-  DonePercent?: string;
-  Description?: string;
 
   ngOnInit(): void {
     this.loadTask();
@@ -33,6 +19,8 @@ export class AddUpdateTaskComponent implements OnInit {
 
   loadTask(): void {
     this.newTask = this.ShowTask;
+    // console.log(this.newTask);
+    // console.log(this.ShowTask);
   }
 
   createTask(): any {
@@ -55,8 +43,8 @@ export class AddUpdateTaskComponent implements OnInit {
       this.service.addTask(task).subscribe( _ => {
         let msg = document.getElementById('printMsg') as HTMLLabelElement;
         msg.textContent = "Task added successfully!";
-        document.getElementById('closebtn')?.click();
-        this.sdtc.closeTask();
+        let closeBtn = document.getElementById('closebtn') as HTMLButtonElement;
+        closeBtn.click();
       });
   }
 
@@ -65,8 +53,8 @@ export class AddUpdateTaskComponent implements OnInit {
       this.service.updateTask(task).subscribe( _ => {
         let msg = document.getElementById('printMsg') as HTMLLabelElement;
         msg.textContent = "Task updated successfully!";
-        document.getElementById('closebtn')?.click();
-        this.sdtc.closeTask();
+        let closeBtn = document.getElementById('closebtn') as HTMLButtonElement;
+        closeBtn.click();
       });
   }
 
