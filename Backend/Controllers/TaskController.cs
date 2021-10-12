@@ -106,6 +106,7 @@ namespace Backend.Controllers
         {
             return await _context.Tasks.Where(p => p.Status == "To-Do")
             .OrderBy(o => o.Priority == "Urgent"? 1 : (o.Priority == "High"? 2 : (o.Priority == "Normal"? 3: 4)))
+            .ThenBy( data => data.TaskID)
             .ToListAsync();
         }
 
@@ -115,6 +116,7 @@ namespace Backend.Controllers
         {
             return await _context.Tasks.Where(p => p.Status == "In Progress")
             .OrderBy(o => o.Priority == "Urgent"? 1 : (o.Priority == "High"? 2 : (o.Priority == "Normal"? 3: 4)))
+            .ThenBy( data => data.TaskID)
             .ToListAsync();
         }
 
@@ -124,6 +126,7 @@ namespace Backend.Controllers
         {
             return await _context.Tasks.Where(p => p.Status == "Completed")
             .OrderBy(o => o.Priority == "Urgent"? 1 : (o.Priority == "High"? 2 : (o.Priority == "Normal"? 3: 4)))
+            .ThenBy( data => data.TaskID)
             .ToListAsync();
         }
 

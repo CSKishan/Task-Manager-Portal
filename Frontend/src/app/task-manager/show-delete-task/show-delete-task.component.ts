@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
-import { Tooltip } from 'bootstrap'; 
 
 @Component({
   selector: 'app-show-delete-task',
