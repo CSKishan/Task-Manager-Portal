@@ -10,3 +10,10 @@
 **Installing node_modules stored in package.json file**
 
 >npm install
+
+
+## Backend
+
+**Install Microsoft ASP.NET Core from the given link
+
+> https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-aspnetcore-5.0.13-windows-x64-installer
