@@ -25,3 +25,15 @@
 > dotnet ef migrations add InitialCreate
 
 > dotnet ef database update
+
+## Run Application
+
+** Backend
+
+> dotnet build
+
+> dotnet run
+
+** Frontend
+
+>ng serve --open
