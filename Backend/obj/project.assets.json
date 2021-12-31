@@ -7433,11 +7433,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Angular-Projects\\Task-Manager-Portal\\Backend\\Backend.csproj",
+      "projectUniqueName": "d:\\December 2021\\Side Projects\\Task-Manager-Portal\\Backend\\Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "D:\\Angular-Projects\\Task-Manager-Portal\\Backend\\Backend.csproj",
+      "projectPath": "d:\\December 2021\\Side Projects\\Task-Manager-Portal\\Backend\\Backend.csproj",
       "packagesPath": "C:\\Users\\kishan\\.nuget\\packages\\",
-      "outputPath": "D:\\Angular-Projects\\Task-Manager-Portal\\Backend\\obj\\",
+      "outputPath": "d:\\December 2021\\Side Projects\\Task-Manager-Portal\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\kishan\\AppData\\Roaming\\NuGet\\NuGet.Config"

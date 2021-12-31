@@ -40,6 +40,7 @@ namespace Backend
             {
                 var connectionString = Configuration.GetConnectionString("defaultConnection");
                 options.UseSqlServer(connectionString);
+                
             });
 
             //Adding JSON Serialiser
