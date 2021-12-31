@@ -28,12 +28,12 @@
 
 ## Run Application
 
-** Backend **
+**Backend**
 
 > dotnet build
 
 > dotnet run
 
-** Frontend **
+**Frontend**
 
 >ng serve --open
